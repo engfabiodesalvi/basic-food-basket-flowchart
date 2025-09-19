@@ -4,9 +4,9 @@
         <attribute name="name" value="analise-cesta-basica"/>
         <attribute name="authors" value="engfa"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2025-09-18 09:53:37 PM"/>
+        <attribute name="saved" value="2025-09-18 10:59:47 PM"/>
         <attribute name="created" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTc7MTE6MjA6MzEgUE07MjgyMg=="/>
-        <attribute name="edited" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTg7MDk6NTM6MzcgUE07MjI7MzAwMQ=="/>
+        <attribute name="edited" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTg7MTA6NTk6NDcgUE07Mjg7MzAwNg=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -33,7 +33,7 @@
             <comment text="Array para armazenar a varia&#231;&#227;o de pre&#231;o de cada produto."/>
             <declare name="variacao" type="Real" array="True" size="numProdutos"/>
             <comment text="Array para armazenar a classifica&#231;&#227;o da varia&#231;&#227;o de pre&#231;o de cada produto."/>
-            <declare name="situacao" type="Real" array="True" size="numProdutos"/>
+            <declare name="situacao" type="String" array="True" size="numProdutos"/>
             <comment text="Indice para acessar as vari&#225;veis dentro do la&#231;o for."/>
             <declare name="indiceProduto" type="Integer" array="False" size=""/>
             <for variable="indiceProduto" start="0" end="numProdutos-1" direction="inc" step="1">
@@ -62,14 +62,17 @@
                     <output expression="&quot;Digite o pre&#231;o do produto &quot; &amp; indiceProduto+1 &amp; &quot; no m&#234;s atual:&quot;" newline="True"/>
                     <input variable="precoAtual[indiceProduto]"/>
                 </while>
-                <comment text="Com as informa&#231;&#245;es sobre os precos de cada produto ser&#225; calculado a varia&#231;&#227;o percentual do pre&#231;o e a classifica&#231;&#227;o desta varia&#231;&#227;o de pre&#231;o. "/>
+                <comment text="Com as informa&#231;&#245;es sobre os precos de cada produto &#233; calculado a varia&#231;&#227;o percentual do pre&#231;o e a classifica&#231;&#227;o desta varia&#231;&#227;o de pre&#231;o. "/>
+                <assign variable="variacao[indiceProduto]" expression="variacaoPercentual(precoAnterior[indiceProduto], precoAtual[indiceProduto])"/>
+                <assign variable="situacao[indiceProduto]" expression="situacaoProduto(variacao[indiceProduto])"/>
             </for>
             <for variable="indiceProduto" start="0" end="numProdutos-1" direction="inc" step="1">
                 <comment text="Mostra no terminal os produtos inseridos para an&#225;lise destacando o nome do produto,  o seu valor no m&#234;s anterior, o seu valor no m&#234;s atual, a varia&#231;&#227;o percentual do seu valor e a an&#225;lise desta varia&#231;&#227;o."/>
                 <output expression="&quot;Produto &quot; &amp; indiceProduto+1 &amp; &quot;: &quot; &amp; nome[indiceProduto]" newline="True"/>
-                <output expression="&quot;    Valor m&#234;s anterior: &quot; &amp; precoAnterior[indiceProduto]" newline="True"/>
-                <output expression="&quot;    Valor m&#234;s atual: &quot; &amp; precoAtual[indiceProduto]" newline="True"/>
-                <output expression="&quot;    Varia&#231;&#227;o percentual (%): &quot; &amp; ToFixed(variacaoPercentual(precoAnterior[indiceProduto], precoAtual[indiceProduto]),2)" newline="True"/>
+                <output expression="&quot;    Valor m&#234;s anterior: R$&quot; &amp; ToFixed(precoAnterior[indiceProduto], 2)" newline="True"/>
+                <output expression="&quot;    Valor m&#234;s atual: R$&quot; &amp; ToFixed(precoAtual[indiceProduto], 2)" newline="True"/>
+                <output expression="&quot;    Varia&#231;&#227;o : &quot; &amp; ToFixed(variacao[indiceProduto], 2) &amp; &quot;%&quot;" newline="True"/>
+                <output expression="&quot;    Situa&#231;&#227;o: &quot; &amp; situacao[indiceProduto]" newline="True"/>
             </for>
         </body>
     </function>
@@ -90,6 +93,29 @@
                     <else/>
                 </if>
             </for>
+        </body>
+    </function>
+    <function name="situacaoProduto" type="String" variable="classificacao">
+        <parameters>
+            <parameter name="variacao" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="classificacao" type="String" array="False" size=""/>
+            <if expression="variacao &gt; 0">
+                <then>
+                    <assign variable="classificacao" expression="&quot;AUMENTO&quot;"/>
+                </then>
+                <else>
+                    <if expression="classificacao &lt; 0">
+                        <then>
+                            <assign variable="classificacao" expression="&quot;QUEDA&quot;"/>
+                        </then>
+                        <else>
+                            <assign variable="classificacao" expression="&quot;EST&#193;VEL&quot;"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
         </body>
     </function>
     <function name="variacaoPercentual" type="Real" variable="variacao">

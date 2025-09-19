@@ -4,9 +4,9 @@
         <attribute name="name" value="analise-cesta-basica"/>
         <attribute name="authors" value="engfa"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2025-09-18 10:59:47 PM"/>
+        <attribute name="saved" value="2025-09-19 04:58:43 PM"/>
         <attribute name="created" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTc7MTE6MjA6MzEgUE07MjgyMg=="/>
-        <attribute name="edited" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTg7MTA6NTk6NDcgUE07Mjg7MzAwNg=="/>
+        <attribute name="edited" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTk7MDQ6NTg6NDMgUE07MzA7Mjk5OA=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -78,14 +78,14 @@
     </function>
     <function name="estaEmBranco" type="Boolean" variable="estaEmBranco">
         <parameters>
-            <parameter name="value" type="String" array="False"/>
+            <parameter name="texto" type="String" array="False"/>
         </parameters>
         <body>
             <declare name="estaEmBranco" type="Boolean" array="False" size=""/>
             <assign variable="estaEmBranco" expression="true"/>
             <declare name="indice" type="Integer" array="False" size=""/>
-            <for variable="indice" start="0" end="len(value)-1" direction="inc" step="1">
-                <if expression="Char(value, indice) != &quot; &quot;">
+            <for variable="indice" start="0" end="len(texto)-1" direction="inc" step="1">
+                <if expression="Char(texto, indice) != &quot; &quot;">
                     <then>
                         <comment text="Atribui falso para a vari&#225;vel isBlank se houver algum caracter diferente de espa&#231;o."/>
                         <assign variable="estaEmBranco" expression="false"/>
@@ -103,10 +103,17 @@
             <declare name="classificacao" type="String" array="False" size=""/>
             <if expression="variacao &gt; 0">
                 <then>
-                    <assign variable="classificacao" expression="&quot;AUMENTO&quot;"/>
+                    <if expression="variacao &gt; 10">
+                        <then>
+                            <assign variable="classificacao" expression="&quot;AUMENTO ABUSIVO&quot;"/>
+                        </then>
+                        <else>
+                            <assign variable="classificacao" expression="&quot;AUMENTO&quot;"/>
+                        </else>
+                    </if>
                 </then>
                 <else>
-                    <if expression="classificacao &lt; 0">
+                    <if expression="variacao &lt; 0">
                         <then>
                             <assign variable="classificacao" expression="&quot;QUEDA&quot;"/>
                         </then>

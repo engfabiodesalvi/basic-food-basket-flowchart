@@ -4,9 +4,9 @@
         <attribute name="name" value="analise-cesta-basica"/>
         <attribute name="authors" value="engfa"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2025-09-19 09:02:27 PM"/>
+        <attribute name="saved" value="2025-09-20 01:31:08 PM"/>
         <attribute name="created" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTc7MTE6MjA6MzEgUE07MjgyMg=="/>
-        <attribute name="edited" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMTk7MDk6MDI6MjcgUE07MzE7Mjk5NQ=="/>
+        <attribute name="edited" value="ZW5nZmE7TEFQVE9QLTJBUkpOQzczOzIwMjUtMDktMjA7MDE6MzE6MDggUE07MzQ7Mjk4Mw=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -19,8 +19,8 @@
             <output expression="&quot;Digite o n&#250;mero de produtos que ser&#227;o analisados (n&#250;mero positivo n&#227;o nulo):&quot;" newline="True"/>
             <comment text="Solicita ao usu&#225;rio que entre com um n&#250;mero de produtos que ser&#227;o analisados."/>
             <input variable="numProdutos"/>
+            <comment text="O loop while certifica que seja digitado um n&#250;mero positivo n&#227;o nulo solicitando ao usu&#225;rio que entre com o valor correto."/>
             <while expression="numProdutos &lt;= 0">
-                <comment text="O loop while certifica que seja digitado um n&#250;mero positivo n&#227;o nulo solicitando ao usu&#225;rio que entre com o valor correto."/>
                 <output expression="&quot;Digite o n&#250;mero de produtos que ser&#227;o analisados (n&#250;mero positivo n&#227;o nulo):&quot;" newline="True"/>
                 <input variable="numProdutos"/>
             </while>
@@ -36,29 +36,29 @@
             <declare name="situacao" type="String" array="True" size="numProdutos"/>
             <comment text="Indice para acessar as vari&#225;veis dentro do la&#231;o for."/>
             <declare name="indiceProduto" type="Integer" array="False" size=""/>
+            <comment text="La&#231;o para o usu&#225;rio entrar com os valores de nome do produto, pre&#231;o no m&#234;s anterior e pre&#231;o no m&#234;s atual referente aos produtos."/>
             <for variable="indiceProduto" start="0" end="numProdutos-1" direction="inc" step="1">
-                <comment text="La&#231;o para o usu&#225;rio entrar com os valores de nome do produto, pre&#231;o no m&#234;s anterior e pre&#231;o no m&#234;s atual referente aos produtos."/>
                 <comment text="Entrar com o nome do produto."/>
                 <output expression="&quot;Digite o nome do produto &quot; &amp; indiceProduto+1 &amp; &quot;:&quot;" newline="True"/>
                 <input variable="nome[indiceProduto]"/>
+                <comment text="Loop executado at&#233; o usu&#225;rio digitar o nome do produto. Este loop tenta simular a fun&#231;&#227;o trim()."/>
                 <while expression="estaEmBranco(nome[indiceProduto])">
-                    <comment text="Loop executado at&#233; o usu&#225;rio digitar o nome do produto. Este loop tenta simular a fun&#231;&#227;o trim()."/>
                     <output expression="&quot;Digite o nome do produto &quot; &amp; indiceProduto+1 &amp; &quot;:&quot;" newline="True"/>
                     <input variable="nome[indiceProduto]"/>
                 </while>
                 <comment text="Entrar com o pre&#231;o anterior do produto."/>
                 <output expression="&quot;Digite o pre&#231;o do produto &quot; &amp; indiceProduto+1 &amp; &quot; no m&#234;s anterior:&quot;" newline="True"/>
                 <input variable="precoAnterior[indiceProduto]"/>
+                <comment text="Loop executado at&#233; o usu&#225;rio digitar um valor positivo n&#227;o nulo."/>
                 <while expression="precoAnterior[indiceProduto] &lt;= 0">
-                    <comment text="Loop executado at&#233; o usu&#225;rio digitar um valor positivo n&#227;o nulo."/>
                     <output expression="&quot;Digite o pre&#231;o do produto &quot; &amp; indiceProduto+1 &amp; &quot; no m&#234;s anterior:&quot;" newline="True"/>
                     <input variable="precoAnterior[indiceProduto]"/>
                 </while>
                 <comment text="Entrar com o pre&#231;o atual do produto."/>
                 <output expression="&quot;Digite o pre&#231;o do produto &quot; &amp; indiceProduto+1 &amp; &quot; no m&#234;s atual:&quot;" newline="True"/>
                 <input variable="precoAtual[indiceProduto]"/>
+                <comment text="Loop executado at&#233; o usu&#225;rio digitar um valor positivo n&#227;o nulo."/>
                 <while expression="precoAtual[indiceProduto] &lt;= 0">
-                    <comment text="Loop executado at&#233; o usu&#225;rio digitar um valor positivo n&#227;o nulo."/>
                     <output expression="&quot;Digite o pre&#231;o do produto &quot; &amp; indiceProduto+1 &amp; &quot; no m&#234;s atual:&quot;" newline="True"/>
                     <input variable="precoAtual[indiceProduto]"/>
                 </while>
@@ -66,8 +66,9 @@
                 <assign variable="variacao[indiceProduto]" expression="variacaoPercentual(precoAnterior[indiceProduto], precoAtual[indiceProduto])"/>
                 <assign variable="situacao[indiceProduto]" expression="situacaoProduto(variacao[indiceProduto])"/>
             </for>
+            <comment text="Mostra no terminal os produtos inseridos para an&#225;lise destacando o nome do produto,  o seu valor no m&#234;s anterior, o seu valor no m&#234;s atual, a varia&#231;&#227;o percentual do seu valor e a an&#225;lise desta varia&#231;&#227;o."/>
+            <comment text="A sa&#237;da num&#233;rica &#233; formatada para apresentar 2 casas ap&#243;s a v&#237;rgula"/>
             <for variable="indiceProduto" start="0" end="numProdutos-1" direction="inc" step="1">
-                <comment text="Mostra no terminal os produtos inseridos para an&#225;lise destacando o nome do produto,  o seu valor no m&#234;s anterior, o seu valor no m&#234;s atual, a varia&#231;&#227;o percentual do seu valor e a an&#225;lise desta varia&#231;&#227;o."/>
                 <output expression="&quot;Produto &quot; &amp; indiceProduto+1 &amp; &quot;: &quot; &amp; nome[indiceProduto]" newline="True"/>
                 <output expression="&quot;    Valor m&#234;s anterior: R$&quot; &amp; ToFixed(precoAnterior[indiceProduto], 2)" newline="True"/>
                 <output expression="&quot;    Valor m&#234;s atual: R$&quot; &amp; ToFixed(precoAtual[indiceProduto], 2)" newline="True"/>

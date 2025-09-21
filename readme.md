@@ -16,6 +16,78 @@ No arquivo disponibilizado [Atividade1_CestaBasica_FabioToledoBonemerDeSalvi.pdf
 
 ---
 
+## 💪 Resultados
+
+### Fluxogramas
+
+- Função Principal
+
+<img src="imagens/funcao_principal.png" width="700px" align="center"/>
+
+- Função estaEmBranco
+
+<img src="imagens/funcao_esta_em_branco.png" width="700px" align="center"/>
+
+- Função variacaoPercentual
+
+<img src="imagens/funcao_variacao_percentual.png" width="250px" align="center"/>
+
+- Função situacaoProduto
+
+<img src="imagens/funcao_situacao_produto.png" width="900px" align="center"/>
+
+### Simulação
+
+<br>
+- Mensagem inicial
+
+<img src="imagens/prompt_1.png" width="450px" align="center"/>
+
+<br>
+- Definindo o número de itens que serão analisados
+
+<img src="imagens/prompt_2.png" width="450px" align="center"/>
+    
+<br>
+- Digitando os dados para o primeiro produto
+
+<img src="imagens/prompt_3.png" width="450px" align="center"/>
+
+<br>
+- Digitando os dados para o segundo produto
+
+<img src="imagens/prompt_4.png" width="450px" align="center"/>
+
+<br>
+- Digitando os dados para o terceiro produto
+
+<img src="imagens/prompt_5.png" width="450px" align="center"/>
+
+<br>
+- Digitando os dados para o quarto produto
+
+<img src="imagens/prompt_6.png" width="450px" align="center"/>
+
+<br>
+- Análise da variação de preço para o primeiro produto
+
+<img src="imagens/prompt_7.png" width="450px" align="center"/>
+
+<br>
+- Análise da variação de preço para o segundo produto
+
+<img src="imagens/prompt_8.png" width="450px" align="center"/>
+
+<br>
+- Análise da variação de preço para o terceiro produto
+
+<img src="imagens/prompt_9.png" width="450px" align="center"/>
+
+<br>
+- Análise da variação de preço para o quarto produto
+
+<img src="imagens/prompt_10.png" width="450px" align="center"/>
+
 ## 🛠 Como usar
 
 1. Abra o arquivo PDF para ver os detalhes da atividade: fluxo, entradas, saídas, variáveis.  
